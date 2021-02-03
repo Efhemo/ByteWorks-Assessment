@@ -7,228 +7,274 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.SignUpFragment">
 
         <include
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/appbar"
             layout="@layout/back_app_bar" />
 
-        <ScrollView
-            android:id="@+id/scroll_container"
-            app:layout_constraintTop_toBottomOf="@id/appbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/form_container"
+            <androidx.core.widget.NestedScrollView
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/dimen_10"
+                app:layout_constraintBottom_toTopOf="@id/sign_up_btn"
+                android:id="@+id/scroll_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_first_name"
-                    android:layout_margin="@dimen/dimen_30"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:layout_constraintTop_toTopOf="parent"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/form_container"
                     android:layout_width="match_parent"
-                    android:hint="@string/first_name"
                     android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_first_name"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_first_name"
+                        android:layout_margin="@dimen/dimen_30"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="@string/first_name"
+                        android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_last_name"
-                    android:layout_marginTop="@dimen/dimen_20"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:layout_constraintTop_toBottomOf="@id/edl_first_name"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_first_name"
-                    app:layout_constraintRight_toRightOf="@id/edl_first_name"
-                    android:layout_width="0dp"
-                    android:hint="Last Name"
-                    android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_first_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_last_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_last_name"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@id/edl_first_name"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_first_name"
+                        app:layout_constraintRight_toRightOf="@id/edl_first_name"
+                        android:layout_width="0dp"
+                        android:hint="@string/last_name"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/gender_header"
-                    android:layout_marginTop="@dimen/dimen_20"
-                    app:layout_constraintTop_toBottomOf="@id/edl_last_name"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
-                    android:text="@string/gender"
-                    android:textStyle="bold"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_last_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <RadioGroup
-                    android:id="@+id/gender"
-                    app:layout_constraintTop_toBottomOf="@id/gender_header"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
-                    app:layout_constraintRight_toRightOf="@id/edl_last_name"
-                    android:layout_width="0dp"
-                    android:checkedButton="@id/male"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <RadioButton
-                        android:layout_weight="1"
-                        android:id="@+id/male"
-                        android:text="@string/male"
+                    <TextView
+                        android:id="@+id/gender_header"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        app:layout_constraintTop_toBottomOf="@id/edl_last_name"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
+                        android:text="@string/gender"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <RadioButton
-                        android:layout_weight="1"
-                        android:id="@+id/female"
-                        android:text="@string/female"
+                    <RadioGroup
+                        android:id="@+id/gender"
+                        app:layout_constraintTop_toBottomOf="@id/gender_header"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
+                        app:layout_constraintRight_toRightOf="@id/edl_last_name"
+                        android:layout_width="0dp"
+                        android:checkedButton="@id/male"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:layout_weight="1"
+                            android:id="@+id/male"
+                            android:text="@string/male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:layout_weight="1"
+                            android:id="@+id/female"
+                            android:text="@string/female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RadioGroup>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_dob"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@id/gender"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
+                        app:layout_constraintRight_toRightOf="@id/edl_last_name"
+                        android:layout_width="0dp"
+                        android:hint="@string/date_of_birth"
+                        app:endIconDrawable="@drawable/ic_calendar"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_designation"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@id/edl_dob"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_dob"
+                        app:layout_constraintRight_toRightOf="@id/edl_dob"
+                        android:layout_width="0dp"
+                        android:hint="@string/designation"
+                        app:endIconDrawable="@drawable/ic_calendar"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_designation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/passport_header"
+                        android:layout_marginTop="@dimen/dimen_30"
+                        app:layout_constraintTop_toBottomOf="@id/edl_designation"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_dob"
+                        android:text="@string/passport_photo"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                </RadioGroup>
+                    <FrameLayout
+                        android:id="@+id/photo_container"
+                        android:background="@drawable/dotted"
+                        app:layout_constraintTop_toBottomOf="@id/passport_header"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_dob"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        android:layout_width="@dimen/dimen_150"
+                        android:layout_height="@dimen/dimen_150">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_dob"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:layout_constraintTop_toBottomOf="@id/gender"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
-                    app:layout_constraintRight_toRightOf="@id/edl_last_name"
-                    android:layout_width="0dp"
-                    android:hint="@string/date_of_birth"
-                    app:endIconDrawable="@drawable/ic_calendar"
-                    android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@drawable/ic_image_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </FrameLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_dob"
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_address"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@id/photo_container"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_dob"
+                        app:layout_constraintRight_toRightOf="@id/edl_dob"
+                        android:layout_width="0dp"
+                        android:hint="@string/address"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_country"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        app:layout_constraintTop_toBottomOf="@id/edl_address"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_address"
+                        app:layout_constraintRight_toRightOf="@id/edl_address"
+                        android:layout_width="0dp"
+                        android:hint="@string/country"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/ed_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_state"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        app:layout_constraintTop_toBottomOf="@id/edl_country"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_country"
+                        app:layout_constraintRight_toRightOf="@id/edl_country"
+                        android:layout_width="0dp"
+                        android:hint="@string/state"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/ed_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_email"
+                        android:layout_margin="@dimen/dimen_30"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@id/edl_state"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:hint="@string/enter_email"
+                        android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_designation"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:layout_constraintTop_toBottomOf="@id/edl_dob"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_dob"
-                    app:layout_constraintRight_toRightOf="@id/edl_dob"
-                    android:layout_width="0dp"
-                    android:hint="@string/designation"
-                    app:endIconDrawable="@drawable/ic_calendar"
-                    android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_designation"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_password"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        app:layout_constraintTop_toBottomOf="@id/edl_email"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_email"
+                        app:layout_constraintRight_toRightOf="@id/edl_email"
+                        android:layout_width="0dp"
+                        android:layout_marginBottom="@dimen/dimen_20"
+                        app:passwordToggleEnabled="true"
+                        android:inputType="textPassword"
+                        android:hint="@string/enter_password"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/passport_header"
-                    android:layout_marginTop="@dimen/dimen_30"
-                    app:layout_constraintTop_toBottomOf="@id/edl_designation"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_dob"
-                    android:text="@string/passport_photo"
-                    android:textStyle="bold"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <FrameLayout
-                    android:id="@+id/photo_container"
-                    android:background="@drawable/dotted"
-                    app:layout_constraintTop_toBottomOf="@id/passport_header"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_dob"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    android:layout_width="@dimen/dimen_150"
-                    android:layout_height="@dimen/dimen_150">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ImageView
-                        android:src="@drawable/ic_image_placeholder"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </FrameLayout>
+            </androidx.core.widget.NestedScrollView>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_address"
-                    android:layout_marginTop="@dimen/dimen_16"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:layout_constraintTop_toBottomOf="@id/photo_container"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_dob"
-                    app:layout_constraintRight_toRightOf="@id/edl_dob"
-                    android:layout_width="0dp"
-                    android:hint="@string/address"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_country"
-                    android:layout_marginTop="@dimen/dimen_20"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                    app:layout_constraintTop_toBottomOf="@id/edl_address"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_address"
-                    app:layout_constraintRight_toRightOf="@id/edl_address"
-                    android:layout_width="0dp"
-                    android:hint="@string/country"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/ed_country"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edl_state"
-                    android:layout_marginTop="@dimen/dimen_20"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                    app:layout_constraintTop_toBottomOf="@id/edl_country"
-                    app:layout_constraintLeft_toLeftOf="@id/edl_country"
-                    app:layout_constraintRight_toRightOf="@id/edl_country"
-                    android:layout_width="0dp"
-                    android:hint="@string/state"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/ed_state"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_20"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:text="@string/sign_in"
+                android:textAllCaps="true"
+                android:id="@+id/sign_up_btn"
+                android:layout_width="match_parent"
+                android:insetBottom="0dp"
+                app:elevation="@dimen/dimen_6"
+                android:insetTop="0dp"
+                android:layout_height="wrap_content" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_margin="@dimen/dimen_30"
-            android:text="@string/sign_in"
-            android:textAllCaps="true"
-            app:layout_constraintTop_toBottomOf="@id/scroll_container"
-            android:id="@+id/sign_up_btn"
-            android:layout_width="match_parent"
-            android:insetBottom="0dp"
-            app:elevation="@dimen/dimen_6"
-            android:insetTop="0dp"
-            android:layout_height="wrap_content" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
