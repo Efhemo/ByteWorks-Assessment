@@ -1,0 +1,139 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.efhem.byteworksassessment"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def appDependencies = rootProject.ext.appDependencies
+    def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation appDependencies.appCompat
+    implementation appDependencies.androidxKtx
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.supportV4
+    implementation(appDependencies.material)
+    //Jetpack
+    implementation appDependencies.fragmentKtx
+    implementation appDependencies.activityKtx
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.lifecycleViewModel
+    implementation appDependencies.lifecyclerRuntime
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUI
+    //koin: dependency injection
+    //implementation appDependencies.koinViemodel
+    //android coroutine support
+    implementation appDependencies.coroutineAndroid
+
+    //timberLogging
+    implementation(appDependencies.timber)
+    //multidex
+    implementation(appDependencies.multidex)
+
+    // CircularImageView
+    implementation(appDependencies.circularImageView)
+    //imageCropper
+    implementation(appDependencies.imageCropper)
+    //glideCompiler
+    implementation(appDependencies.glide)
+    annotationProcessor(appDependencies.glideCompiler)
+    //leakCanary
+    implementation(appDependencies.leakCanary)
+
+
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.coroutinesCore
+    //local
+    implementation dataDependencies.room
+    implementation(dataDependencies.roomCoroutinSupport)
+    kapt dataDependencies.roomCompiler
+    //remote
+    implementation dataDependencies.retrofit
+    //implementation dataDependencies.moshiConverter
+    //implementation dataDependencies.squarwMoshiKotlin
+    implementation dataDependencies.loggingInterceptor
+    implementation(dataDependencies.gson)
+    implementation(dataDependencies.workManager)
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+
+
+    ////////////////      TESTING    ///////////////////////////////////
+
+    // Dependencies for local unit tests ////////////////////////////////////////////////////
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
+    // AndroidX Test - JVM testing
+    testImplementation testDependencies.androidXTestCore
+    testImplementation testDependencies.robolectric
+    testImplementation testDependencies.androidXTestExtKotlinRunner
+    //To be able to test LiveData
+    testImplementation testDependencies.archComponentTest
+    //for testing with coroutines
+    testImplementation testDependencies.coroutinesTest
+    //truth for better assert
+    testImplementation testDependencies.googleTruth
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // Dependencies for Android instrumented unit tests //////////////////////////////////////
+    androidTestImplementation "junit:junit:$junitVersion"
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion") {
+        // conflicts with mockito due to direct inclusion of byte buddy
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
+    // Testing code should not be included in the main code.
+    // Once https://issuetracker.google.com/128612536 is fixed this can be fixed.
+    implementation testDependencies.fragmentTesting
+    implementation testDependencies.androidxTestCore
+
+    androidTestImplementation testDependencies.androidXTestExtKotlin
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.espressoContrib
+
+    //mock
+    androidTestImplementation testDependencies.mockito
+    androidTestImplementation testDependencies.dexMakerVersion
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+}
