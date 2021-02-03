@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.efhem.byteworksassessment.R
+import com.efhem.byteworksassessment.databinding.FragmentEmployeeDetailsBinding
+import com.efhem.byteworksassessment.databinding.FragmentFormBinding
 
 
 class EmployeeDetailsFragment : Fragment() {
 
 
+    private lateinit var bind: FragmentEmployeeDetailsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employee_details, container, false)
+        bind = FragmentEmployeeDetailsBinding.inflate(inflater, container, false)
+
+        return bind.root
     }
 }
