@@ -7,6 +7,6 @@ import com.efhem.byteworksassessment.R
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_form)
+        setContentView(R.layout.activity_main)
     }
 }
