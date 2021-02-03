@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/back_app_bar" />
+
+        <androidx.core.widget.NestedScrollView
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.EmployeeDetailsFragment">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/photo"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/dimen_30"
+                    android:src="@drawable/ic_image_placeholder"
+                    android:layout_width="@dimen/dimen_120"
+                    android:layout_height="@dimen/dimen_120" />
+
+                <TextView
+                    android:text="Adegbite Femi "
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:textSize="28sp"
+                    android:textColor="?android:attr/colorPrimary"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/photo"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@id/photo"
+                    android:id="@+id/tv_full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_designation"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_full_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_full_name"
+                    android:text="Founder and CEO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_marginTop="40dp"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_designation"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_designation"
+                    android:text="adegbitefemi@mail.com"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:drawablePadding="@dimen/dimen_20"
+                    android:drawableStart="@drawable/ic_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_dob"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_designation"
+                    android:text="24-Nov-1990"
+                    android:gravity="center"
+                    android:drawablePadding="@dimen/dimen_20"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_dob"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_designation"
+                    android:text="24, cabin street, Ikeja, Lagos"
+                    android:gravity="center"
+                    android:drawablePadding="@dimen/dimen_20"
+                    android:drawableStart="@drawable/ic_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_state_country"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_20"
+                    app:layout_constraintTop_toBottomOf="@id/tv_address"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_designation"
+                    android:text="Lagos State, Nigeria"
+                    android:gravity="center"
+                    android:drawablePadding="@dimen/dimen_20"
+                    android:drawableStart="@drawable/ic_location_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Byteworks Assessment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="sign_in">Sign in</string>
+    <string name="don_t_have_an_account_yet_sign_up_now">Don\'t have an account yet? Sign up! Now</string>
+    <string name="back">back</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="gender">Gender</string>
+    <string name="address">Address</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="first_name">First Name</string>
+    <string name="search_employee">Search Employee</string>
+    <string name="designation">Designation</string>
+    <string name="passport_photo">Passport photo</string>
+    <string name="last_name">Last Name</string>
 </resources>
