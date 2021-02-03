@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SignInFragment">
+    tools:context=".ui.SignInFragment">
 
     <ImageView
         android:id="@+id/company_logo"
@@ -55,6 +55,7 @@
         app:layout_constraintRight_toRightOf="@id/edl_email"
         android:layout_width="0dp"
         app:passwordToggleEnabled="true"
+        android:inputType="textPassword"
         android:hint="@string/enter_password"
         android:layout_height="wrap_content">
 
