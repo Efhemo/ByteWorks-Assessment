@@ -10,15 +10,21 @@ import com.efhem.byteworksassessment.databinding.FragmentFormBinding
 
 class AddEmployeeFragment : Fragment() {
 
-    private lateinit var bind: FragmentFormBinding
+    private var _bind: FragmentFormBinding? = null
+    private val bind: FragmentFormBinding = _bind!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bind = FragmentFormBinding.inflate(inflater, container, false)
+        _bind = FragmentFormBinding.inflate(inflater, container, false)
 
         return bind.root
     }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _bind = null
+    }
 
 }

@@ -13,14 +13,20 @@ import com.efhem.byteworksassessment.databinding.FragmentFormBinding
 class EmployeeDetailsFragment : Fragment() {
 
 
-    private lateinit var bind: FragmentEmployeeDetailsBinding
+    private var _bind: FragmentEmployeeDetailsBinding? = null
+    private val bind: FragmentEmployeeDetailsBinding get() = _bind!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bind = FragmentEmployeeDetailsBinding.inflate(inflater, container, false)
+        _bind = FragmentEmployeeDetailsBinding.inflate(inflater, container, false)
 
         return bind.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _bind = null
     }
 }
