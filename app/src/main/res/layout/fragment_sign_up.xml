@@ -151,6 +151,7 @@
                         android:layout_height="@dimen/dimen_150">
 
                         <ImageView
+                            android:id="@+id/img_photo"
                             android:src="@drawable/ic_image_placeholder"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
