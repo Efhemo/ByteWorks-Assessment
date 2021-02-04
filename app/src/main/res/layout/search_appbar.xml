@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:id="@+id/searchToolbar"
-        android:background="@drawable/grey_border_bottom">
 
-        <Toolbar
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <merge>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_height="50dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/searchToolbar"
+            android:background="@drawable/grey_border_bottom">
 
-            <RelativeLayout
+            <Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_arrow_back_ios"
-                    android:layout_marginEnd="15dp"
-                    android:id="@+id/ivBackArrow" />
-
-                <EditText
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/search_employee"
-                    android:textColor="@android:color/black"
-                    android:background="@null"
-                    android:textSize="20sp"
-                    android:layout_toEndOf="@id/ivBackArrow"
-                    android:id="@+id/etSearchContacts"/>
+                    android:layout_height="wrap_content">
 
 
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_arrow_back_ios"
+                        android:layout_marginEnd="15dp"
+                        android:id="@+id/ivBackArrow" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_employee"
+                        android:textColor="@android:color/black"
+                        android:background="@null"
+                        android:textSize="20sp"
+                        android:layout_toEndOf="@id/ivBackArrow"
+                        android:id="@+id/etSearchContacts" />
 
 
-        </Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+                </RelativeLayout>
 
 
-</merge>
+            </Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    </merge>
+</layout>
