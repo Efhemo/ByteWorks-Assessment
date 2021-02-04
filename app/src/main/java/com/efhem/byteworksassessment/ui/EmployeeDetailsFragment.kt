@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.efhem.byteworksassessment.R
 import com.efhem.byteworksassessment.databinding.FragmentEmployeeDetailsBinding
 import com.efhem.byteworksassessment.databinding.FragmentFormBinding
@@ -16,6 +17,7 @@ import com.efhem.byteworksassessment.viewmodels.SignInViewModel
 class EmployeeDetailsFragment : Fragment() {
 
 
+    private val args: EmployeeDetailsFragmentArgs by navArgs()
     private var _bind: FragmentEmployeeDetailsBinding? = null
     private val bind: FragmentEmployeeDetailsBinding get() = _bind!!
 
@@ -29,6 +31,8 @@ class EmployeeDetailsFragment : Fragment() {
 
         bind.viewmodel = viewModel
         bind.lifecycleOwner = this
+
+        val id  = args.employeeId
 
         return bind.root
     }

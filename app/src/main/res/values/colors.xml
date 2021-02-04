@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="dotted">#BFBFBF</color>
+    <color name="faint_grey">#DFDFDF</color>
+
 
 </resources>

@@ -50,7 +50,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_first_name"
-                            android:text="@={viewmodel.authSignupFields[`first_name`]"
+                            android:text="@={viewmodel.authSignupFields[`first_name`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -69,7 +69,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_last_name"
-                            android:text="@={viewmodel.authSignupFields[`last_name`]"
+                            android:text="@={viewmodel.authSignupFields[`last_name`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +125,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_dob"
-                            android:text="@={viewmodel.authSignupFields[`dob`]"
+                            android:text="@={viewmodel.authSignupFields[`dob`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -172,7 +172,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_address"
-                            android:text="@={viewmodel.authSignupFields[`address`]"
+                            android:text="@={viewmodel.authSignupFields[`address`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -191,7 +191,7 @@
 
                         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                             android:id="@+id/ed_country"
-                            android:text="@={viewmodel.authSignupFields[`country`]"
+                            android:text="@={viewmodel.authSignupFields[`country`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -210,7 +210,7 @@
 
                         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                             android:id="@+id/ed_state"
-                            android:text="@={viewmodel.authSignupFields[`state`]"
+                            android:text="@={viewmodel.authSignupFields[`state`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -227,7 +227,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_email"
-                            android:text="@={viewmodel.authSignupFields[`email`]"
+                            android:text="@={viewmodel.authSignupFields[`email`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -249,7 +249,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_password"
-                            android:text="@={viewmodel.authSignupFields[`password`]"
+                            android:text="@={viewmodel.authSignupFields[`password`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>

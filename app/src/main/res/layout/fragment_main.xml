@@ -27,16 +27,23 @@
                 android:id="@+id/appbar_container"
                 android:layout_height="wrap_content">
 
-                <include layout="@layout/search_appbar" />
+                <include
+                    android:id="@+id/search_appbar"
+                    layout="@layout/search_appbar" />
 
-                <include layout="@layout/main_app_bar" />
+                <include
+                    android:id="@+id/main_appbar"
+                    layout="@layout/main_app_bar" />
 
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 app:layout_constraintTop_toBottomOf="@+id/appbar_container"
                 android:layout_width="match_parent"
-                app:spanCount="3"
+                android:orientation="vertical"
+                android:id="@+id/rc_employee"
+                listEmployee="@{viewmodel.employeeObservable}"
+                app:spanCount="@integer/span_size"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/employee_item"
                 android:layout_height="0dp" />
