@@ -6,6 +6,10 @@
 
     <data>
 
+        <variable
+            name="viewmodel"
+            type="com.efhem.byteworksassessment.viewmodels.MainViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

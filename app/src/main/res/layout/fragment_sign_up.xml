@@ -7,14 +7,14 @@
 
         <variable
             name="viewmodel"
-            type="com.efhem.byteworksassessment.viewmodels.AddEmployeeViewModel" />
+            type="com.efhem.byteworksassessment.viewmodels.SignUpViewModel" />
 
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AddEmployeeFragment">
+        tools:context=".ui.SignUpFragment">
 
         <include
             android:id="@+id/appbar"
@@ -45,12 +45,12 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="match_parent"
                         android:hint="@string/first_name"
-                        app:errorText="@{viewmodel.fieldsError[`first_name`]}"
+                        app:errorText="@{viewmodel.signInErrors[`first_name`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_first_name"
-                            android:text="@={viewmodel.formFields[`first_name`]}"
+                            android:text="@={viewmodel.authSignupFields[`first_name`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +58,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/edl_last_name"
                         android:layout_marginTop="@dimen/dimen_20"
-                        app:errorText="@{viewmodel.fieldsError[`last_name`]}"
+                        app:errorText="@{viewmodel.signInErrors[`last_name`]}"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         app:layout_constraintTop_toBottomOf="@id/edl_first_name"
                         app:layout_constraintLeft_toLeftOf="@id/edl_first_name"
@@ -69,7 +69,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_last_name"
-                            android:text="@={viewmodel.formFields[`last_name`]}"
+                            android:text="@={viewmodel.authSignupFields[`last_name`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -119,33 +119,13 @@
                         app:layout_constraintRight_toRightOf="@id/edl_last_name"
                         android:layout_width="0dp"
                         android:hint="@string/date_of_birth"
-                        app:errorText="@{viewmodel.fieldsError[`dob`]}"
+                        app:errorText="@{viewmodel.signInErrors[`dob`]}"
                         app:endIconDrawable="@drawable/ic_calendar"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_dob"
-                            android:text="@={viewmodel.formFields[`dob`]}"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edl_designation"
-                        android:layout_marginTop="@dimen/dimen_16"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        app:layout_constraintTop_toBottomOf="@id/edl_dob"
-                        app:layout_constraintLeft_toLeftOf="@id/edl_dob"
-                        app:layout_constraintRight_toRightOf="@id/edl_dob"
-                        android:layout_width="0dp"
-                        android:hint="@string/designation"
-                        app:errorText="@{viewmodel.fieldsError[`designation`]}"
-                        app:endIconDrawable="@drawable/ic_calendar"
-                        android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/ed_designation"
-                            android:text="@={viewmodel.formFields[`designation`]}"
+                            android:text="@={viewmodel.authSignupFields[`dob`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -153,7 +133,7 @@
                     <TextView
                         android:id="@+id/passport_header"
                         android:layout_marginTop="@dimen/dimen_30"
-                        app:layout_constraintTop_toBottomOf="@id/edl_designation"
+                        app:layout_constraintTop_toBottomOf="@id/edl_dob"
                         app:layout_constraintLeft_toLeftOf="@id/edl_dob"
                         android:text="@string/passport_photo"
                         android:textStyle="bold"
@@ -171,7 +151,6 @@
                         android:layout_height="@dimen/dimen_150">
 
                         <ImageView
-                            android:id="@+id/img_photo"
                             android:src="@drawable/ic_image_placeholder"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
@@ -187,12 +166,12 @@
                         app:layout_constraintRight_toRightOf="@id/edl_dob"
                         android:layout_width="0dp"
                         android:hint="@string/address"
-                        app:errorText="@{viewmodel.fieldsError[`address`]}"
+                        app:errorText="@{viewmodel.signInErrors[`address`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_address"
-                            android:text="@={viewmodel.formFields[`address`]}"
+                            android:text="@={viewmodel.authSignupFields[`address`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -206,12 +185,12 @@
                         app:layout_constraintRight_toRightOf="@id/edl_address"
                         android:layout_width="0dp"
                         android:hint="@string/country"
-                        app:errorText="@{viewmodel.fieldsError[`country`]}"
+                        app:errorText="@{viewmodel.signInErrors[`country`]}"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                             android:id="@+id/ed_country"
-                            android:text="@={viewmodel.formFields[`country`]}"
+                            android:text="@={viewmodel.authSignupFields[`country`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -225,12 +204,12 @@
                         app:layout_constraintRight_toRightOf="@id/edl_country"
                         android:layout_width="0dp"
                         android:hint="@string/state"
-                        app:errorText="@{viewmodel.fieldsError[`state`]}"
+                        app:errorText="@{viewmodel.signInErrors[`state`]}"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                             android:id="@+id/ed_state"
-                            android:text="@={viewmodel.formFields[`state`]}"
+                            android:text="@={viewmodel.authSignupFields[`state`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -242,17 +221,37 @@
                         app:layout_constraintTop_toBottomOf="@id/edl_state"
                         android:layout_width="match_parent"
                         android:hint="@string/enter_email"
-                        android:layout_marginBottom="@dimen/dimen_20"
-                        app:errorText="@{viewmodel.fieldsError[`email`]}"
+                        app:errorText="@{viewmodel.signInErrors[`email`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_email"
-                            android:text="@={viewmodel.formFields[`email`]}"
+                            android:text="@={viewmodel.authSignupFields[`email`]"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_password"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_marginTop="@dimen/dimen_20"
+                        app:layout_constraintTop_toBottomOf="@id/edl_email"
+                        app:layout_constraintLeft_toLeftOf="@id/edl_email"
+                        app:layout_constraintRight_toRightOf="@id/edl_email"
+                        android:layout_width="0dp"
+                        android:layout_marginBottom="@dimen/dimen_20"
+                        app:passwordToggleEnabled="true"
+                        android:inputType="textPassword"
+                        android:hint="@string/enter_password"
+                        app:errorText="@{viewmodel.signInErrors[`password`]}"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_password"
+                            android:text="@={viewmodel.authSignupFields[`password`]"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -272,7 +271,7 @@
                 android:insetBottom="0dp"
                 app:elevation="@dimen/dimen_6"
                 android:insetTop="0dp"
-                android:onClick="@{() -> viewmodel.createEmployee()}"
+                android:onClick="@{() -> viewmodel.signUpAdmin()}"
                 android:layout_height="wrap_content" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

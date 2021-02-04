@@ -20,4 +20,7 @@
     <string name="designation">Designation</string>
     <string name="passport_photo">Passport photo</string>
     <string name="last_name">Last Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_employee">Create Employee</string>
+    <string name="photo_not_selected">Photo not selected</string>
 </resources>

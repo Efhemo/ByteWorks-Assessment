@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.efhem.byteworksassessment.viewmodels.SignInViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -45,12 +47,14 @@
                 android:layout_margin="@dimen/dimen_30"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:layout_constraintTop_toBottomOf="@id/welcome_title"
+                app:errorText="@{viewmodel.signInErrors[`email`]}"
                 android:layout_width="match_parent"
                 android:hint="@string/enter_email"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_email"
+                    android:text="@={viewmodel.authSignInFields[`email`]}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -59,6 +63,7 @@
                 android:id="@+id/edl_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="@dimen/dimen_20"
+                app:errorText="@{viewmodel.signInErrors[`password`]}"
                 app:layout_constraintTop_toBottomOf="@id/edl_email"
                 app:layout_constraintLeft_toLeftOf="@id/edl_email"
                 app:layout_constraintRight_toRightOf="@id/edl_email"
@@ -70,6 +75,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_password"
+                    android:text="@={viewmodel.authSignInFields[`password`]}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -85,6 +91,7 @@
                 android:layout_width="0dp"
                 android:insetBottom="0dp"
                 app:elevation="@dimen/dimen_6"
+                android:onClick="@{() -> viewmodel.signInUser()}"
                 android:insetTop="0dp"
                 android:layout_height="wrap_content" />
 
