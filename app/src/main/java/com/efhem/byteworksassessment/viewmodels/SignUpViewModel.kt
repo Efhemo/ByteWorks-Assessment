@@ -5,10 +5,11 @@ import androidx.databinding.ObservableMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.efhem.byteworksassessment.data.CountryStateRepo
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(val countryStateRepo: CountryStateRepo) : ViewModel() {
 
     // for displaying errors for empty fields
     val signInErrors: ObservableMap<String, String?> = ObservableArrayMap()
