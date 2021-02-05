@@ -16,12 +16,12 @@ class MainViewModel : ViewModel() {
     private val searchWord: LiveData<CharSequence> = _searchWord
 
     private val employees = listOf(
-        Employee(1, 1, "labake", "Akinyingbe", "Female",
-            "Agent", "27-10-1990", "", "24, akinwale street", "Nigeria", "Lagos"),
-        Employee(2, 1, "Temitope", "HR", "Female",
-            "Agent", "27-10-1992", "", "24, akinwale street", "Nigeria", "Lagos"),
-        Employee(3, 1, "Akin", "Akinwale", "male",
-            "Founder and CEO", "27-10-1890", "", "24, akinwale street", "Nigeria", null),
+        Employee("1",  "labake", "Akinyingbe", "Female",
+            "Agent", "27-10-1990", "", "24, akinwale street", "Nigeria", "Lagos", "sumthing.com"),
+        Employee("2",  "Temitope", "HR", "Female",
+            "Agent", "27-10-1992", "", "24, akinwale street", "Nigeria", "Lagos", "sumthing.com"),
+        Employee("3",  "Akin", "Akinwale", "male",
+            "Founder and CEO", "27-10-1890", "", "24, akinwale street", "Nigeria", null, "sumthing.com"),
     )
 
     private val _employeeObservable = MutableLiveData(employees)

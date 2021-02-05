@@ -8,15 +8,18 @@ import androidx.room.TypeConverters
 import com.efhem.byteworksassessment.data.CountryState
 import com.efhem.byteworksassessment.data.local.dao.AdminDao
 import com.efhem.byteworksassessment.data.local.dao.CountryStateDao
+import com.efhem.byteworksassessment.data.local.dao.EmployeeDao
 import com.efhem.byteworksassessment.data.local.model.AdminLocal
+import com.efhem.byteworksassessment.data.local.model.EmployeeLocal
 import com.efhem.byteworksassessment.util.CountryStateTypeConverter
 
 
-@Database(entities = [CountryState::class, AdminLocal::class], version = 1, exportSchema = false)
+@Database(entities = [CountryState::class, AdminLocal::class, EmployeeLocal::class], version = 1, exportSchema = false)
 @TypeConverters(CountryStateTypeConverter::class )
 abstract class ByteWorksDatabase : RoomDatabase() {
     abstract fun daoCountries(): CountryStateDao
     abstract fun daoAdmin(): AdminDao
+    abstract fun daoEmployee(): EmployeeDao
 }
 
 private lateinit var INSTANCE: ByteWorksDatabase
