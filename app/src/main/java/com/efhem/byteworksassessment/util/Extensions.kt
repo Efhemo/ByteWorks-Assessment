@@ -4,6 +4,7 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.textfield.TextInputEditText
 
 inline fun <T, K, R> LiveData<T>.combineWith(
         liveData: LiveData<K>,
@@ -24,4 +25,10 @@ fun AppCompatAutoCompleteTextView.disableKeyBoard(){
     requestFocus()
     showSoftInputOnFocus = false
     threshold = 2
+}
+
+fun TextInputEditText.disableKeyBoard(){
+    //restrict keyboard from showing up
+    requestFocus()
+    showSoftInputOnFocus = false
 }

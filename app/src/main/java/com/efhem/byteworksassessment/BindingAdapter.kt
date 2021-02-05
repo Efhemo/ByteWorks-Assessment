@@ -12,9 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 
 @BindingAdapter("errorText")
 fun setErrorMessage(view: TextInputLayout, errorMessage: String?) {
-    errorMessage?.let {
       view.error = errorMessage
-    }
 }
 
 @BindingAdapter("imageUrl", "cropping")

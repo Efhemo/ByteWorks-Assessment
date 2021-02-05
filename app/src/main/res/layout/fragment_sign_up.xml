@@ -45,7 +45,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="match_parent"
                         android:hint="@string/first_name"
-                        app:errorText="@{viewmodel.signInErrors[`first_name`]}"
+                        errorText="@{viewmodel.signInErrors[`first_name`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -58,7 +58,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/edl_last_name"
                         android:layout_marginTop="@dimen/dimen_20"
-                        app:errorText="@{viewmodel.signInErrors[`last_name`]}"
+                        errorText="@{viewmodel.signInErrors[`last_name`]}"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         app:layout_constraintTop_toBottomOf="@id/edl_first_name"
                         app:layout_constraintLeft_toLeftOf="@id/edl_first_name"
@@ -92,6 +92,7 @@
                         app:layout_constraintRight_toRightOf="@id/edl_last_name"
                         android:layout_width="0dp"
                         android:orientation="horizontal"
+                        android:checkedButton="@id/male"
                         android:layout_height="wrap_content">
 
                         <RadioButton
@@ -119,13 +120,14 @@
                         app:layout_constraintRight_toRightOf="@id/edl_last_name"
                         android:layout_width="0dp"
                         android:hint="@string/date_of_birth"
-                        app:errorText="@{viewmodel.signInErrors[`dob`]}"
+                        errorText="@{viewmodel.signInErrors[`dob`]}"
                         app:endIconDrawable="@drawable/ic_calendar"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_dob"
                             android:text="@={viewmodel.authSignupFields[`dob`]}"
+                            android:inputType="none"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -167,7 +169,7 @@
                         app:layout_constraintRight_toRightOf="@id/edl_dob"
                         android:layout_width="0dp"
                         android:hint="@string/address"
-                        app:errorText="@{viewmodel.signInErrors[`address`]}"
+                        errorText="@{viewmodel.signInErrors[`address`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -186,13 +188,14 @@
                         app:layout_constraintRight_toRightOf="@id/edl_address"
                         android:layout_width="0dp"
                         android:hint="@string/country"
-                        app:errorText="@{viewmodel.signInErrors[`country`]}"
+                        errorText="@{viewmodel.signInErrors[`country`]}"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                             android:id="@+id/ed_country"
                             android:text="@={viewmodel.authSignupFields[`country`]}"
                             android:layout_width="match_parent"
+                            android:inputType="none"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,13 +208,14 @@
                         app:layout_constraintRight_toRightOf="@id/edl_country"
                         android:layout_width="0dp"
                         android:hint="@string/state"
-                        app:errorText="@{viewmodel.signInErrors[`state`]}"
+                        errorText="@{viewmodel.signInErrors[`state`]}"
                         android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                             android:id="@+id/ed_state"
                             android:text="@={viewmodel.authSignupFields[`state`]}"
                             android:layout_width="match_parent"
+                            android:inputType="none"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,7 +226,7 @@
                         app:layout_constraintTop_toBottomOf="@id/edl_state"
                         android:layout_width="match_parent"
                         android:hint="@string/enter_email"
-                        app:errorText="@{viewmodel.signInErrors[`email`]}"
+                        errorText="@{viewmodel.signInErrors[`email`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -244,11 +248,12 @@
                         app:passwordToggleEnabled="true"
                         android:inputType="textPassword"
                         android:hint="@string/enter_password"
-                        app:errorText="@{viewmodel.signInErrors[`password`]}"
+                        errorText="@{viewmodel.signInErrors[`password`]}"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_password"
+                            android:inputType="textPassword"
                             android:text="@={viewmodel.authSignupFields[`password`]}"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />

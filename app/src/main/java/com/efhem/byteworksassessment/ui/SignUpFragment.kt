@@ -8,15 +8,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.efhem.byteworksassessment.R
 import com.efhem.byteworksassessment.databinding.FragmentSignUpBinding
+import com.efhem.byteworksassessment.util.Utils
+import com.efhem.byteworksassessment.util.disableKeyBoard
 import com.efhem.byteworksassessment.viewmodels.SignUpViewModel
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
@@ -50,7 +54,7 @@ class SignUpFragment : Fragment() {
         bind.gender.setOnCheckedChangeListener { _, checkedId ->
             if(checkedId == R.id.male){
                 viewModel.setGender("Male")
-            }else viewModel.setGender("Female")
+            } else viewModel.setGender("Female")
         }
 
         signUpAdmin()
@@ -58,7 +62,59 @@ class SignUpFragment : Fragment() {
         bind.appbar.title.text = getString(R.string.sign_up)
         bind.appbar.btnBackArrow.setOnClickListener { navController.popBackStack() }
 
+        viewModel.message.observe(viewLifecycleOwner){
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        }
+
+        seUpDOB()
+        setUpCountryState()
+
         return bind.root
+    }
+
+    private fun seUpDOB() {
+        bind.edDob.apply {
+            this.disableKeyBoard()
+            setOnClickListener {
+                Utils.showDatePicker(childFragmentManager) {
+                    bind.edlDob.editText?.setText(it)
+                }
+            }
+        }
+    }
+
+    private fun setUpCountryState() {
+        bind.edCountry.apply {
+            disableKeyBoard()
+            viewModel.observeCountry.observe(viewLifecycleOwner, Observer {
+                val stateString = it.map { it.name }
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_dropdown_item,
+                    stateString
+                )
+                setAdapter(adapter)
+                setOnItemClickListener { parent, _, position, _ ->
+                    bind.edState.setText("")
+                    val selectedCountry = bind.edCountry.text.toString()
+                    val correspondedState = it.find { it.name == selectedCountry }?.states
+                    viewModel.setState(correspondedState)
+                }
+            })
+        }
+
+        bind.edState.apply {
+            disableKeyBoard()
+            viewModel.observeState.observe(viewLifecycleOwner, Observer {
+                val stateString = it?.map { it.name }
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_dropdown_item,
+                    if (stateString.isNullOrEmpty()) emptyList() else stateString
+                )
+                setAdapter(adapter)
+            })
+        }
     }
 
     private fun signUpAdmin(){
