@@ -22,7 +22,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.File
 
-class AddEmployeeFragment : Fragment() {
+class AddEmployeeFragment() : Fragment() {
 
     private var _bind: FragmentFormBinding? = null
     private val bind: FragmentFormBinding get()  = _bind!!

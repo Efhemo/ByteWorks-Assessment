@@ -5,10 +5,13 @@ import androidx.databinding.ObservableMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.efhem.byteworksassessment.data.repository.IEmployeeRepo
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
+import kotlinx.coroutines.launch
 
-class AddEmployeeViewModel : ViewModel() {
+class AddEmployeeViewModel(private val employeeRepo: IEmployeeRepo) : ViewModel() {
 
     val fieldsError: ObservableMap<String, String?> = ObservableArrayMap()
     val formFields: ObservableMap<String, String> = ObservableArrayMap()
@@ -33,9 +36,28 @@ class AddEmployeeViewModel : ViewModel() {
         val email = formFields["email"]
         val password = formFields["password"]
 
+        if(firstName == null || lastName == null ||  dob == null || designation == null ||
+            address == null || country == null ||  state == null ||  email== null ||
+            password == null){
+            return
+        }
+
+        val employee =
+
+        viewModelScope.launch {
+
+            if(employeeRepo.getEmployee(email) ==  null){
+                adminRepo.saveAdmin(admin)
+                finishInserting()
+            } else {
+                signInErrors["email"] = "Admin with this email already exit"
+            }
+        }
+
         //todo: save info in db
         navigateToMainPage()
     }
+
 
     private fun navigateToMainPage(){
         _navigateToMainPage.value = Event(true)
