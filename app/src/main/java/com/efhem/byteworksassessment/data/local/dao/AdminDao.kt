@@ -7,7 +7,7 @@ import com.efhem.byteworksassessment.data.local.model.AdminLocal
 interface AdminDao {
 
     @Query("SELECT * FROM adminlocal WHERE email = :email")
-    suspend fun getAdmin(email: String): AdminLocal
+    suspend fun getAdmin(email: String): AdminLocal?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAdmin(form: AdminLocal)

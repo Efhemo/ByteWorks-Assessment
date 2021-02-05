@@ -13,8 +13,8 @@ class AdminRepo(
                             Dispatchers.IO) : IAdminRepo {
 
     private val adminDao = database.daoAdmin()
-    override suspend fun getAdmin(email: String): Admin = withContext(ioDispatcher){
-        adminDao.getAdmin(email).toAdmin()
+    override suspend fun getAdmin(email: String): Admin? = withContext(ioDispatcher){
+        adminDao.getAdmin(email)?.toAdmin()
     }
 
     override suspend fun saveAdmin(admin: Admin) {

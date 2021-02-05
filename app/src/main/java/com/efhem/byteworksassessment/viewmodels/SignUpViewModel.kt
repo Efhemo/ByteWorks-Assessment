@@ -31,7 +31,7 @@ class SignUpViewModel(val countryStateRepo: ICountryStateRepo,
     private val _observeState = MutableLiveData<List<StateResponse>?>()
     val observeState: LiveData<List<StateResponse>?> = _observeState
 
-    val message: MutableLiveData<String> = MutableLiveData("")
+    val message: MutableLiveData<String> = MutableLiveData(null)
 
     fun setState(states: List<StateResponse>?){
         _observeState.value = states
@@ -64,13 +64,18 @@ class SignUpViewModel(val countryStateRepo: ICountryStateRepo,
             firstName, lastName, gender, dob, photo, address, country, state, email, password
         )
         viewModelScope.launch {
-            adminRepo.saveAdmin(admin)
-            finishInserting()
+
+            if(adminRepo.getAdmin(email) ==  null){
+                adminRepo.saveAdmin(admin)
+                finishInserting()
+            } else {
+                signInErrors["email"] = "Admin with this email already exit"
+            }
         }
     }
 
     private fun finishInserting() {
-        message.value = "Save"
+        message.value = "Submit"
         _navigateToSignInPage.value = Event(true)
     }
 

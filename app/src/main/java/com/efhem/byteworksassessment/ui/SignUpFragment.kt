@@ -63,7 +63,7 @@ class SignUpFragment : Fragment() {
         bind.appbar.btnBackArrow.setOnClickListener { navController.popBackStack() }
 
         viewModel.message.observe(viewLifecycleOwner){
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            it?.let { Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show() }
         }
 
         seUpDOB()
