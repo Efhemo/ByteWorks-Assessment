@@ -65,7 +65,7 @@
         tools:layout="@layout/fragment_employee_details">
         <argument
             android:name="employeeId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
 
 </navigation>

@@ -5,16 +5,30 @@ import androidx.databinding.ObservableMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.efhem.byteworksassessment.data.CountryState
+import com.efhem.byteworksassessment.data.remote.model.StateResponse
+import com.efhem.byteworksassessment.data.repository.ICountryStateRepo
+import com.efhem.byteworksassessment.data.repository.IEmployeeRepo
+import com.efhem.byteworksassessment.domain.model.Employee
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
+import kotlinx.coroutines.launch
 
-class AddEmployeeViewModel : ViewModel() {
+class AddEmployeeViewModel(
+    private val countryStateRepo: ICountryStateRepo,
+    private val employeeRepo: IEmployeeRepo) : ViewModel() {
 
     val fieldsError: ObservableMap<String, String?> = ObservableArrayMap()
     val formFields: ObservableMap<String, String> = ObservableArrayMap()
 
     private val _navigateToMainPage = MutableLiveData<Event<Boolean>>()
     val navigateToMainPage: LiveData<Event<Boolean>> = _navigateToMainPage
+
+    val observeCountry: LiveData<List<CountryState>> = countryStateRepo.observableCountryState()
+
+    private val _observeState = MutableLiveData<List<StateResponse>?>()
+    val observeState: LiveData<List<StateResponse>?> = _observeState
 
     fun createEmployee(){
 
@@ -26,27 +40,43 @@ class AddEmployeeViewModel : ViewModel() {
         val lastName = formFields["last_name"]
         val gender = formFields["gender"]
         val dob = formFields["dob"]
+        val photo = formFields["photo"]
         val designation = formFields["designation"]
         val address = formFields["address"]
         val country = formFields["country"]
         val state = formFields["state"]
         val email = formFields["email"]
-        val password = formFields["password"]
 
-        //todo: save info in db
-        navigateToMainPage()
+        if(firstName == null || lastName == null ||  dob == null || designation == null ||
+            address == null || country == null ||  email== null ){
+            return
+        }
+
+        val employee = Employee(firstName, lastName, gender, designation, dob, photo, address, country, state, email)
+
+        viewModelScope.launch {
+
+            if(employeeRepo.getEmployee(email) == null){
+                employeeRepo.saveEmployee(employee)
+                navigateToMainPage()
+            } else {
+                fieldsError["email"] = "Employee with this email already exit"
+            }
+        }
     }
+
 
     private fun navigateToMainPage(){
         _navigateToMainPage.value = Event(true)
     }
 
     private fun isSignUpFieldsValidate(): Boolean {
-        for (field in listOf("first_name", "last_name","radio_checked","dob","designation","address","country","state","email", "password")) {
+        for (field in listOf("first_name", "last_name","dob","designation","address","country","state","email")) {
             if (formFields[field].isNullOrEmpty()) {
                 fieldsError[field] = "Invalid"
                 return false
-            }
+            } else { fieldsError[field] = null }
+
             if (field == "email" && Utils.isEmailValid(formFields[field].toString()).not()) {
                 fieldsError[field] = "Invalid Email"
                 return false
@@ -68,5 +98,9 @@ class AddEmployeeViewModel : ViewModel() {
 
     fun setGender(gender: String){
         formFields["gender"] = gender
+    }
+
+    fun setState(states: List<StateResponse>?){
+        _observeState.value = states
     }
 }

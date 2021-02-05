@@ -3,28 +3,30 @@ package com.efhem.byteworksassessment.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.efhem.byteworksassessment.data.repository.IEmployeeRepo
 import com.efhem.byteworksassessment.domain.model.Employee
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.combineWith
+import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val employeeRepo: IEmployeeRepo) : ViewModel() {
 
-    private val _navigateToEmployeeDetails = MutableLiveData<Event<Int>>()
-    val navigateToEmployeeDetails: LiveData<Event<Int>> = _navigateToEmployeeDetails
+    private val _navigateToEmployeeDetails = MutableLiveData<Event<String>>()
+    val navigateToEmployeeDetails: LiveData<Event<String>> = _navigateToEmployeeDetails
 
     private val _searchWord = MutableLiveData<CharSequence>()
     private val searchWord: LiveData<CharSequence> = _searchWord
 
-    private val employees = listOf(
-        Employee(1, 1, "labake", "Akinyingbe", "Female",
-            "Agent", "27-10-1990", "", "24, akinwale street", "Nigeria", "Lagos"),
-        Employee(2, 1, "Temitope", "HR", "Female",
-            "Agent", "27-10-1992", "", "24, akinwale street", "Nigeria", "Lagos"),
-        Employee(3, 1, "Akin", "Akinwale", "male",
-            "Founder and CEO", "27-10-1890", "", "24, akinwale street", "Nigeria", null),
-    )
+    val observeEmployee = MutableLiveData<Employee>()
 
-    private val _employeeObservable = MutableLiveData(employees)
+    fun setEmployee(email: String){
+        viewModelScope.launch {
+            observeEmployee.value = employeeRepo.getEmployee(email)
+        }
+    }
+
+    private val _employeeObservable = employeeRepo.observeEmployees()
     val employeeObservable = _employeeObservable.combineWith(searchWord){ employees, searchWord ->
         searchEmployee(searchWord, employees)
     }
@@ -44,7 +46,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun viewEmployeeDetails(id: Int){
+    fun viewEmployeeDetails(id: String){
         _navigateToEmployeeDetails.value = Event(id)
     }
 

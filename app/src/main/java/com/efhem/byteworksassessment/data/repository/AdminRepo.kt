@@ -18,7 +18,9 @@ class AdminRepo(
     }
 
     override suspend fun saveAdmin(admin: Admin) {
-        adminDao.insertAdmin(AdminLocal.fromAdmin(admin))
+        withContext(ioDispatcher){
+            adminDao.insertAdmin(AdminLocal.fromAdmin(admin))
+        }
     }
 
 

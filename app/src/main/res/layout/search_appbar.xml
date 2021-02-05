@@ -6,9 +6,10 @@
     <merge>
 
         <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_width="match_parent"
             android:id="@+id/searchToolbar"
+            android:gravity="center|start"
             android:background="@drawable/grey_border_bottom">
 
             <Toolbar
@@ -17,19 +18,19 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
 
                     <ImageView
                         android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_height="match_parent"
                         android:src="@drawable/ic_arrow_back_ios"
                         android:layout_marginEnd="15dp"
                         android:id="@+id/ivBackArrow" />
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:hint="@string/search_employee"
                         android:textColor="@android:color/black"
                         android:background="@null"

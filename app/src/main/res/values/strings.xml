@@ -7,7 +7,7 @@
     <string name="enter_email">Enter Email</string>
     <string name="sign_in">Sign in</string>
     <string name="don_t_have_an_account_yet_sign_up_now">Don\'t have an account yet? Sign up! Now</string>
-    <string name="back">back</string>
+    <string name="back">Back</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="date_of_birth">Date of birth</string>
@@ -23,4 +23,5 @@
     <string name="sign_up">Sign Up</string>
     <string name="create_employee">Create Employee</string>
     <string name="photo_not_selected">Photo not selected</string>
+    <string name="employee">Employee</string>
 </resources>

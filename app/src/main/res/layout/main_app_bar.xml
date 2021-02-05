@@ -9,9 +9,10 @@
     <merge>
 
         <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="?android:colorBackground"
             android:layout_width="match_parent"
+            android:gravity="center|start"
             android:id="@+id/viewMainToolbar">
 
             <Toolbar
@@ -25,7 +26,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Employee"
+                        android:text="@string/employee"
+                        android:textStyle="bold"
+                        android:layout_marginStart="@dimen/dimen_16"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp" />
 

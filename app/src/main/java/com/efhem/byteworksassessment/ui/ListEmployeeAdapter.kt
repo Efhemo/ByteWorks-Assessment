@@ -26,7 +26,7 @@ class ListEmployeeAdapter(val viewModel: MainViewModel) :
         holder.bind.employee = employee
         holder.bind.executePendingBindings()
         holder.bind.root.setOnClickListener {
-            viewModel.viewEmployeeDetails(employee.id)
+            viewModel.viewEmployeeDetails(employee.email)
         }
     }
 
@@ -44,6 +44,6 @@ class DiffCallBackUnitLog : DiffUtil.ItemCallback<Employee>() {
     }
 
     override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.email == newItem.email
     }
 }
