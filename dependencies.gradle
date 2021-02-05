@@ -40,7 +40,7 @@ ext {
     retrofitVersion = '2.7.0'
     moshiConverterVersion = '2.7.0'
     loggingInterceptorVersion = '4.2.1'
-    roomVersion = '2.2.3'
+    roomVersion = '2.3.0-beta01'
     work_version = "2.3.4"
 
     //Testing
@@ -66,6 +66,7 @@ ext {
     rulesVersion = '1.0.1'
     truthVersion = '1.0.1'
     fragmentVersion = '1.1.0-alpha07'
+    hilt_version = '2.31.2-alpha'
 
 
 
@@ -109,7 +110,9 @@ ext {
             imageCropper           :'com.theartofdev.edmodo:android-image-cropper:2.8.0',
             glide                  :'com.github.bumptech.glide:glide:4.11.0',
             glideCompiler          : 'com.github.bumptech.glide:compiler:4.11.0',
-            paracamera             : 'com.mindorks:paracamera:0.2.2'
+            paracamera             : 'com.mindorks:paracamera:0.2.2',
+            hiltAndroid            : "com.google.dagger:hilt-android:$hilt_version",
+            hilt                   : "com.google.dagger:hilt-android-compiler:$hilt_version"
 
 
     ]

@@ -60,8 +60,12 @@ dependencies {
     implementation appDependencies.lifecyclerRuntime
     implementation appDependencies.navigationFragment
     implementation appDependencies.navigationUI
+    //hilt dependency injection
+    //implementation appDependencies.hiltAndroid
+    //kapt appDependencies.hilt
+
     //koin: dependency injection
-    //implementation appDependencies.koinViemodel
+    implementation appDependencies.koinViemodel
     //android coroutine support
     implementation appDependencies.coroutineAndroid
 
