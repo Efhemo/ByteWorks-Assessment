@@ -3,13 +3,16 @@ package com.efhem.byteworksassessment.viewmodels
 import androidx.databinding.ObservableArrayMap
 import androidx.databinding.ObservableMap
 import androidx.lifecycle.*
+import com.efhem.byteworksassessment.data.repository.IAdminRepo
 import com.efhem.byteworksassessment.data.repository.ICountryStateRepo
 import com.efhem.byteworksassessment.domain.model.ResultWrapper
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
 import kotlinx.coroutines.launch
 
-class SignInViewModel(private val countryStateRepo: ICountryStateRepo) : ViewModel() {
+class SignInViewModel(private val countryStateRepo: ICountryStateRepo,
+                      private val adminRepo: IAdminRepo
+) : ViewModel() {
 
     // for displaying errors for empty fields
     val signInErrors: ObservableMap<String, String?> = ObservableArrayMap()
@@ -37,8 +40,22 @@ class SignInViewModel(private val countryStateRepo: ICountryStateRepo) : ViewMod
         val email = authSignInFields["email"]
         val password = authSignInFields["password"]
 
-        //todo: save info in db
-        navigateToMainPage()
+        if( email== null || password == null){
+            return
+        }
+
+        viewModelScope.launch {
+            val admin = adminRepo.getAdmin(email)
+            if( admin ==  null){
+                signInErrors["email"] = "Admin with email does not exist"
+            } else {
+                if(admin.password != password){
+                    signInErrors["password"] = "Incorrect password"
+                }else {
+                    navigateToMainPage()
+                }
+            }
+        }
     }
 
 
