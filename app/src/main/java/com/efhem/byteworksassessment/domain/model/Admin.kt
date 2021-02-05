@@ -1,6 +1,8 @@
 package com.efhem.byteworksassessment.domain.model
 
+
 data class Admin(
+    val id: String,
     val firstName: String,
     val lastName: String,
     val gender: String,
@@ -10,11 +12,3 @@ data class Admin(
     val country: String,
     val state: String,
 )
-
-/*
-* Firstname
-Lastname
-Gender
-Date of birth Passport photo Address Country
-State
-* */
