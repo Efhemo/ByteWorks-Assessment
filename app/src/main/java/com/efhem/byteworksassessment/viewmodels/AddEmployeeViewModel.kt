@@ -71,7 +71,7 @@ class AddEmployeeViewModel(
     }
 
     private fun isSignUpFieldsValidate(): Boolean {
-        for (field in listOf("first_name", "last_name","dob","designation","address","country","state","email")) {
+        for (field in listOf("first_name", "last_name","dob","designation","address","country","email")) {
             if (formFields[field].isNullOrEmpty()) {
                 fieldsError[field] = "Invalid"
                 return false
