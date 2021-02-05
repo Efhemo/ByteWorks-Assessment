@@ -31,7 +31,7 @@ val mRepositoryModules = module {
 
 val mViewModelsModules = module {
 
-    viewModel { SignInViewModel(get()) }
+    viewModel { SignInViewModel(get(), get()) }
     viewModel { SignUpViewModel(get(), get()) }
 
 }
