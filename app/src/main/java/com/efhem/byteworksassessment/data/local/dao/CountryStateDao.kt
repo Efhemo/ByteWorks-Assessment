@@ -11,7 +11,7 @@ interface CountryStateDao {
     suspend fun getCountry(name: String): CountryState
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEmployee(form: List<CountryState>)
+    suspend fun insertCountry(form: List<CountryState>)
 
     @Query("SELECT * FROM countrystate")
     fun observeCountries(): LiveData<List<CountryState>>

@@ -1,6 +1,7 @@
-package com.efhem.byteworksassessment.data
+package com.efhem.byteworksassessment.data.repository
 
 import androidx.lifecycle.LiveData
+import com.efhem.byteworksassessment.data.CountryState
 import com.efhem.byteworksassessment.data.local.ByteWorksDatabase
 import com.efhem.byteworksassessment.data.remote.RemoteApi
 import com.efhem.byteworksassessment.data.remote.safeApiResult
@@ -21,7 +22,7 @@ class CountryStateRepo(
         countryStateDao.getCountry(id) }
 
     override suspend fun saveCountries(countries: List<CountryState>) {
-        countryStateDao.insertEmployee(countries)
+        countryStateDao.insertCountry(countries)
     }
 
     override suspend fun isCountryStateAvailable(): Boolean  = countryStateDao.countryCount() > 0
@@ -40,6 +41,6 @@ class CountryStateRepo(
     override suspend fun deleteAllFarm() = countryStateDao.deleteAllCountries()
 
 
-    override fun observableFarms(): LiveData<List<CountryState>>  = countryStateDao.observeCountries()
+    override fun observableCountryState(): LiveData<List<CountryState>>  = countryStateDao.observeCountries()
 
 }

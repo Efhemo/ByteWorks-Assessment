@@ -3,7 +3,7 @@ package com.efhem.byteworksassessment.viewmodels
 import androidx.databinding.ObservableArrayMap
 import androidx.databinding.ObservableMap
 import androidx.lifecycle.*
-import com.efhem.byteworksassessment.data.ICountryStateRepo
+import com.efhem.byteworksassessment.data.repository.ICountryStateRepo
 import com.efhem.byteworksassessment.domain.model.ResultWrapper
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
