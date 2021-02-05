@@ -10,9 +10,11 @@ import com.efhem.byteworksassessment.domain.model.Employee
 import com.efhem.byteworksassessment.ui.ListEmployeeAdapter
 import com.google.android.material.textfield.TextInputLayout
 
-@BindingAdapter("app:errorText")
+@BindingAdapter("errorText")
 fun setErrorMessage(view: TextInputLayout, errorMessage: String?) {
-    view.error = errorMessage
+    errorMessage?.let {
+      view.error = errorMessage
+    }
 }
 
 @BindingAdapter("imageUrl", "cropping")

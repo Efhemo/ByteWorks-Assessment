@@ -1,3 +1,4 @@
+package com.efhem.byteworksassessment.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -10,11 +11,14 @@ interface CountryStateDao {
     suspend fun getCountry(name: String): CountryState
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFarms(form: List<CountryState>)
+    suspend fun insertEmployee(form: List<CountryState>)
 
     @Query("SELECT * FROM countrystate")
     fun observeCountries(): LiveData<List<CountryState>>
 
     @Query("DELETE FROM countrystate")
     suspend fun deleteAllCountries()
+
+    @Query("SELECT COUNT(*) from countrystate")
+    suspend fun countryCount(): Int
 }

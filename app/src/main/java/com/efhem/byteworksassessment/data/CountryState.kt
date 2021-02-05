@@ -11,8 +11,8 @@ import com.google.gson.annotations.SerializedName
 data class CountryState(
     @SerializedName("code")
     val code: String,
-    @PrimaryKey
     @SerializedName("name")
+    @PrimaryKey
     val name: String,
     @SerializedName("states")
     val states: List<StateResponse>?

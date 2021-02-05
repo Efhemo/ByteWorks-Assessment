@@ -23,7 +23,7 @@ val mLocalModules = module {
 
 val mRepositoryModules = module {
 
-    single { CountryStateRepo( get(), get(), Dispatchers.IO) as ICountryStateRepo }
+    single { CountryStateRepo( get(), get()) as ICountryStateRepo }
 
 }
 

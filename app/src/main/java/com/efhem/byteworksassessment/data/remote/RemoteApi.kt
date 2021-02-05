@@ -7,5 +7,5 @@ import retrofit2.http.*
 interface RemoteApi {
 
     @GET("countries")
-    suspend fun farmers(): Response<CountryResponseRemote>
+    suspend fun countryState(): Response<CountryResponseRemote>
 }

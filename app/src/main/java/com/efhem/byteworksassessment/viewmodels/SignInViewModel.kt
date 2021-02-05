@@ -2,14 +2,14 @@ package com.efhem.byteworksassessment.viewmodels
 
 import androidx.databinding.ObservableArrayMap
 import androidx.databinding.ObservableMap
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.efhem.byteworksassessment.data.CountryStateRepo
+import androidx.lifecycle.*
+import com.efhem.byteworksassessment.data.ICountryStateRepo
+import com.efhem.byteworksassessment.domain.model.ResultWrapper
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
+import kotlinx.coroutines.launch
 
-class SignInViewModel(val countryStateRepo: CountryStateRepo) : ViewModel() {
+class SignInViewModel(private val countryStateRepo: ICountryStateRepo) : ViewModel() {
 
     // for displaying errors for empty fields
     val signInErrors: ObservableMap<String, String?> = ObservableArrayMap()
@@ -17,6 +17,15 @@ class SignInViewModel(val countryStateRepo: CountryStateRepo) : ViewModel() {
 
     private val _navigateToMainPage = MutableLiveData<Event<Boolean>>()
     val navigateToMainPage: LiveData<Event<Boolean>> = _navigateToMainPage
+
+    private val _navigateToSignUp = MutableLiveData<Event<Boolean>>()
+    val navigateToSignUp: LiveData<Event<Boolean>> = _navigateToSignUp
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _error = MutableLiveData<String?>(null)
+    val error: LiveData<String?> = _error
 
 
     fun signInUser(){
@@ -30,6 +39,26 @@ class SignInViewModel(val countryStateRepo: CountryStateRepo) : ViewModel() {
 
         //todo: save info in db
         navigateToMainPage()
+    }
+
+
+
+    fun navigateToSignUp(){
+
+        _isLoading.value = true
+        _error.value = null
+        viewModelScope.launch {
+            if(countryStateRepo.isCountryStateAvailable()){
+                _navigateToSignUp.value = Event(true)
+            }else{
+                when(val result = countryStateRepo.fetchCountryState()){
+                    is ResultWrapper.Success -> _navigateToSignUp.value = Event(true)
+                    is ResultWrapper.Error -> _error.value = result.exception.message
+                    is ResultWrapper.NetworkError -> _error.value = result.message
+                }
+            }
+            _isLoading.value = false
+        }
     }
 
     private fun isSignInFieldsValidate(): Boolean {

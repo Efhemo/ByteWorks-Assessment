@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="viewmodel"
             type="com.efhem.byteworksassessment.viewmodels.SignInViewModel" />
@@ -17,6 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.SignInFragment">
+
+            <ProgressBar
+                android:visibility="@{viewmodel.isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <ImageView
                 android:id="@+id/company_logo"
@@ -42,12 +53,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:id="@+id/tv_error"
+                app:layout_constraintTop_toBottomOf="@id/welcome_title"
+                android:text="@{viewmodel.error}"
+                android:visibility="@{viewmodel.error == null ? View.GONE : View.VISIBLE}"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="@id/company_logo"
+                app:layout_constraintRight_toRightOf="@id/company_logo"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edl_email"
                 android:layout_margin="@dimen/dimen_30"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:layout_constraintTop_toBottomOf="@id/welcome_title"
-                app:errorText="@{viewmodel.signInErrors[`email`]}"
+                app:layout_constraintTop_toBottomOf="@id/tv_error"
+                errorText="@{viewmodel.signInErrors[`email`]}"
                 android:layout_width="match_parent"
                 android:hint="@string/enter_email"
                 android:layout_height="wrap_content">
@@ -63,7 +88,7 @@
                 android:id="@+id/edl_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="@dimen/dimen_20"
-                app:errorText="@{viewmodel.signInErrors[`password`]}"
+                errorText="@{viewmodel.signInErrors[`password`]}"
                 app:layout_constraintTop_toBottomOf="@id/edl_email"
                 app:layout_constraintLeft_toLeftOf="@id/edl_email"
                 app:layout_constraintRight_toRightOf="@id/edl_email"
@@ -90,6 +115,7 @@
                 android:id="@+id/sign_in_btn"
                 android:layout_width="0dp"
                 android:insetBottom="0dp"
+                android:enabled="@{viewmodel.isLoading() ? false : true}"
                 app:elevation="@dimen/dimen_6"
                 android:onClick="@{() -> viewmodel.signInUser()}"
                 android:insetTop="0dp"
@@ -101,6 +127,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="@dimen/dimen_50"
                 app:layout_constraintVertical_bias="0"
+                android:onClick="@{() -> viewmodel.navigateToSignUp()}"
                 android:text="@string/don_t_have_an_account_yet_sign_up_now"
                 app:layout_constraintLeft_toLeftOf="@id/sign_in_btn"
                 app:layout_constraintRight_toRightOf="@id/sign_in_btn"

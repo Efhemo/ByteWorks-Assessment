@@ -40,7 +40,7 @@ ext {
     retrofitVersion = '2.7.0'
     moshiConverterVersion = '2.7.0'
     loggingInterceptorVersion = '4.2.1'
-    roomVersion = '2.2.3'
+    roomVersion = '2.3.0-beta01'
     work_version = "2.3.4"
 
     //Testing

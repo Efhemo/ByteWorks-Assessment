@@ -17,12 +17,12 @@ suspend fun <T : Any> safeApiResult (
             when {
                 response.isSuccessful -> { ResultWrapper.Success(response.body()!!) }
                 response.code() == ErrorCode.BAD_REQUEST -> {
-                    ResultWrapper.Error(Exception(message = "Bad Request, Check your input"))
+                    ResultWrapper.Error(Exception("Bad Request, Check your input"))
                 }
-                else -> ResultWrapper.Error(Exception(message = "Server error"))
+                else -> ResultWrapper.Error(Exception("Server error"))
             }
         } catch (e: IOException) {
-            ResultWrapper.Error(Exception(message = "There was a network connection error."))
+            ResultWrapper.Error(Exception("There was a network connection error."))
         }catch (e: Throwable){
             ResultWrapper.NetworkError()
         }

@@ -20,6 +20,7 @@ import com.efhem.byteworksassessment.databinding.FragmentSignUpBinding
 import com.efhem.byteworksassessment.viewmodels.SignUpViewModel
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment() {
 
@@ -27,7 +28,7 @@ class SignUpFragment : Fragment() {
     private val bind: FragmentSignUpBinding get() = _bind!!
     private lateinit var navController: NavController
 
-    private val viewModel: SignUpViewModel by viewModels()
+    private val viewModel: SignUpViewModel by viewModel()
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
