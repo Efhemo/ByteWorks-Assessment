@@ -1,7 +1,6 @@
 package com.efhem.byteworksassessment.domain.model
 
 data class Employee (
-    val id: String,
     val firstName: String,
     val lastName: String,
     val gender: String?,

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.efhem.byteworksassessment.data.repository.IEmployeeRepo
+import com.efhem.byteworksassessment.domain.model.Employee
 import com.efhem.byteworksassessment.util.Event
 import com.efhem.byteworksassessment.util.Utils
 import kotlinx.coroutines.launch
@@ -29,6 +30,7 @@ class AddEmployeeViewModel(private val employeeRepo: IEmployeeRepo) : ViewModel(
         val lastName = formFields["last_name"]
         val gender = formFields["gender"]
         val dob = formFields["dob"]
+        val photo = formFields["photo"]
         val designation = formFields["designation"]
         val address = formFields["address"]
         val country = formFields["country"]
@@ -42,20 +44,17 @@ class AddEmployeeViewModel(private val employeeRepo: IEmployeeRepo) : ViewModel(
             return
         }
 
-        val employee =
+        val employee = Employee(firstName, lastName, gender, designation, dob, photo, address, country, state, email)
 
         viewModelScope.launch {
 
-            if(employeeRepo.getEmployee(email) ==  null){
-                adminRepo.saveAdmin(admin)
-                finishInserting()
+            if(employeeRepo.getEmployee(email) == null){
+                employeeRepo.saveEmployee(employee)
+                navigateToMainPage()
             } else {
-                signInErrors["email"] = "Admin with this email already exit"
+                fieldsError["email"] = "Employee with this email already exit"
             }
         }
-
-        //todo: save info in db
-        navigateToMainPage()
     }
 
 

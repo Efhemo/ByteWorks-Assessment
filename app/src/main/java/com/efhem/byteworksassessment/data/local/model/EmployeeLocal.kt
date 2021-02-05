@@ -24,13 +24,12 @@ data class EmployeeLocal(
 ){
 
     fun toEmployee(): Employee {
-        return Employee(id, firstName, lastName, gender, designer, dob, passportPhoto, address, country, state, email)
+        return Employee(firstName, lastName, gender, designer, dob, passportPhoto, address, country, state, email)
     }
 
     companion object {
         fun fromEmployee(employee: Employee): EmployeeLocal {
             return EmployeeLocal(
-                id = employee.id,
                 firstName = employee.firstName,
                 lastName = employee.lastName,
                 designer = employee.designer,
