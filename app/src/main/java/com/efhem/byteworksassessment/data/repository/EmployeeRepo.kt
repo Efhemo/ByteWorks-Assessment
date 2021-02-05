@@ -25,7 +25,9 @@ class EmployeeRepo(
         }
 
     override suspend fun saveEmployee(employee: Employee) {
-       employeeDao.insertEmployee(EmployeeLocal.fromEmployee(employee))
+       withContext(ioDispatcher){
+           employeeDao.insertEmployee(EmployeeLocal.fromEmployee(employee))
+       }
     }
 
 

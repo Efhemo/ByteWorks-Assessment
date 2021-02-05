@@ -91,6 +91,7 @@
                         app:layout_constraintLeft_toLeftOf="@id/edl_last_name"
                         app:layout_constraintRight_toRightOf="@id/edl_last_name"
                         android:layout_width="0dp"
+                        android:checkedButton="@id/male"
                         android:orientation="horizontal"
                         android:layout_height="wrap_content">
 

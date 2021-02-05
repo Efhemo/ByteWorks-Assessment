@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="viewmodel"
-            type="com.efhem.byteworksassessment.viewmodels.MainViewModel" />
+            name="employee"
+            type="com.efhem.byteworksassessment.domain.model.Employee" />
 
     </data>
 
@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/back_app_bar" />
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/back_app_bar" />
 
         <androidx.core.widget.NestedScrollView
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
@@ -35,11 +37,13 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="@dimen/dimen_30"
                     android:src="@drawable/ic_image_placeholder"
+                    imageUrl="@{employee.passportPhoto}"
+                    app:cropping="@{`none`}"
                     android:layout_width="@dimen/dimen_120"
                     android:layout_height="@dimen/dimen_120" />
 
                 <TextView
-                    android:text="Adegbite Femi "
+                    android:text="@{employee.firstName + ' ' + employee.lastName}"
                     android:layout_marginTop="@dimen/dimen_20"
                     android:textSize="28sp"
                     android:textColor="?android:attr/colorPrimary"
@@ -59,7 +63,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     app:layout_constraintLeft_toLeftOf="@id/tv_full_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_full_name"
-                    android:text="Founder and CEO"
+                    android:text="@{employee.designer}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -69,7 +73,7 @@
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintTop_toBottomOf="@id/tv_designation"
                     app:layout_constraintLeft_toLeftOf="@id/tv_designation"
-                    android:text="adegbitefemi@mail.com"
+                    android:text="@{employee.email}"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:drawablePadding="@dimen/dimen_20"
@@ -84,7 +88,7 @@
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintTop_toBottomOf="@id/tv_email"
                     app:layout_constraintLeft_toLeftOf="@id/tv_designation"
-                    android:text="24-Nov-1990"
+                    android:text="@{employee.dob}"
                     android:gravity="center"
                     android:drawablePadding="@dimen/dimen_20"
                     android:drawableStart="@drawable/ic_calendar"
@@ -98,7 +102,7 @@
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintTop_toBottomOf="@id/tv_dob"
                     app:layout_constraintLeft_toLeftOf="@id/tv_designation"
-                    android:text="24, cabin street, Ikeja, Lagos"
+                    android:text="@{employee.address}"
                     android:gravity="center"
                     android:drawablePadding="@dimen/dimen_20"
                     android:drawableStart="@drawable/ic_location"
@@ -112,7 +116,7 @@
                     android:textSize="@dimen/text_size_20"
                     app:layout_constraintTop_toBottomOf="@id/tv_address"
                     app:layout_constraintLeft_toLeftOf="@id/tv_designation"
-                    android:text="Lagos State, Nigeria"
+                    android:text="@{employee.country}"
                     android:gravity="center"
                     android:drawablePadding="@dimen/dimen_20"
                     android:drawableStart="@drawable/ic_location_city"

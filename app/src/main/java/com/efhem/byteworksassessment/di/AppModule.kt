@@ -5,6 +5,7 @@ import com.efhem.byteworksassessment.data.remote.RemoteApi
 import com.efhem.byteworksassessment.data.remote.createNetworkClient
 import com.efhem.byteworksassessment.data.repository.*
 import com.efhem.byteworksassessment.viewmodels.AddEmployeeViewModel
+import com.efhem.byteworksassessment.viewmodels.MainViewModel
 import com.efhem.byteworksassessment.viewmodels.SignInViewModel
 import com.efhem.byteworksassessment.viewmodels.SignUpViewModel
 import org.koin.android.ext.koin.androidContext
@@ -32,6 +33,7 @@ val mViewModelsModules = module {
 
     viewModel { SignInViewModel(get(), get()) }
     viewModel { SignUpViewModel(get(), get()) }
-    viewModel { AddEmployeeViewModel(get()) }
+    viewModel { MainViewModel(get() ) }
+    viewModel { AddEmployeeViewModel(get(), get() ) }
 
 }

@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.efhem.byteworksassessment.R
 import com.efhem.byteworksassessment.databinding.FragmentEmployeeDetailsBinding
-import com.efhem.byteworksassessment.databinding.FragmentFormBinding
 import com.efhem.byteworksassessment.viewmodels.MainViewModel
-import com.efhem.byteworksassessment.viewmodels.SignInViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class EmployeeDetailsFragment : Fragment() {
@@ -21,7 +19,7 @@ class EmployeeDetailsFragment : Fragment() {
     private var _bind: FragmentEmployeeDetailsBinding? = null
     private val bind: FragmentEmployeeDetailsBinding get() = _bind!!
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +27,16 @@ class EmployeeDetailsFragment : Fragment() {
     ): View? {
         _bind = FragmentEmployeeDetailsBinding.inflate(inflater, container, false)
 
-        bind.viewmodel = viewModel
-        bind.lifecycleOwner = this
+        bind.appbar.btnBackArrow.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
-        val id  = args.employeeId
+        viewModel.setEmployee(args.employeeId)
+
+        viewModel.observeEmployee.observe(viewLifecycleOwner){
+            bind.employee = it
+        }
+        bind.lifecycleOwner = this
 
         return bind.root
     }

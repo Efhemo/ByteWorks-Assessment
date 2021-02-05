@@ -9,7 +9,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,6 +17,7 @@ import com.efhem.byteworksassessment.R
 import com.efhem.byteworksassessment.databinding.FragmentMainBinding
 import com.efhem.byteworksassessment.domain.model.AppBar
 import com.efhem.byteworksassessment.viewmodels.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
 
     private var appBarState = AppBar.STANDARD_APPBAR
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModel()
 
     private var adapter: ListEmployeeAdapter? = null
 
@@ -66,9 +66,9 @@ class MainFragment : Fragment() {
 
     private fun navigateToDetails(){
         viewModel.navigateToEmployeeDetails.observe(viewLifecycleOwner, {
-            it.getContentIfNotHandled()?.let { id ->
+            it.getContentIfNotHandled()?.let { email ->
                 navController.navigate(
-                    MainFragmentDirections.actionMainFragmentToEmployeeDetailsFragment(id)
+                    MainFragmentDirections.actionMainFragmentToEmployeeDetailsFragment(email)
                 )
             }
         })
